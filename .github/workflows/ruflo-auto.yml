@@ -1,0 +1,10 @@
+name: Ruflo Auto
+on:
+  schedule:
+    - cron: '0 */4 * * *'
+jobs:
+  u:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - run: git pull origin main && npm ci --only=prod && git add . && git commit -m 'Auto $(date)' || true && git push
